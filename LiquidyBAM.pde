@@ -18,8 +18,9 @@ import toxi.processing.*; // toxiclibs display
 // A reference to our box2d world
 Box2DProcessing box2d;
 VideoSource source;
-BlobDetection theBlobDetection;
 
+PolygonBlob poly; 
+BlobDetection theBlobDetection;
 
 // A list we'll use to track fixed objects
 ArrayList<Boundary> boundaries;
@@ -30,14 +31,14 @@ ArrayList<ParticleSystem> systems;
 void setup() {
   size(400,300, P3D);
   smooth();
-
   // Init boundaries
   source = new VideoSource(this);
   source.setup();
+  theBlobDetection = source.theBlobDetection;
   // Initialize box2d physics and create the world
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
-
+ 
   // We are setting a custom gravity
   box2d.setGravity(0, -20);
 
@@ -52,9 +53,10 @@ void setup() {
 
 void draw() {
   background(255);
-
+  
   // We must always step through time!
   box2d.step();
+  source.getNewShapes();
 
   // Run all the particle systems
   for (ParticleSystem system: systems) {
@@ -69,7 +71,7 @@ void draw() {
     wall.display();
   }
   
-  image(source.getImage(),0,0, width, height);
+  image(source.canvas,0,0, width, height);
 }
 
 
