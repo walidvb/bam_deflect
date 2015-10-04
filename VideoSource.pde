@@ -10,8 +10,8 @@ class VideoSource{
   PApplet applet;
   VideoSource(PApplet applet){
      this.applet = applet;
-     this.width = applet.width;
-     this.height = applet.height;
+     this.width = 640;
+     this.height = 480;
      this.available = false;
   }
   void setup(){
@@ -45,13 +45,15 @@ class VideoSource{
       return this.available;
   }
   int count = 0;
-  void getNewShapes(){
+  void computeBlob(){
     if(this.client.available()){
       this.canvas = this.client.getGraphics(canvas);
       this.canvas.loadPixels();
       theBlobDetection.computeBlobs(this.canvas.pixels);
+
     }
   }
+  
   PGraphics getImage(){
     if (this.client.available()) {
       this.available = true;

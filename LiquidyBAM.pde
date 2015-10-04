@@ -56,7 +56,16 @@ void draw() {
   
   // We must always step through time!
   box2d.step();
-  source.getNewShapes();
+  source.computeBlob();
+  // initialize a new polygon
+  poly = new PolygonBlob();
+  // create the polygon from the blobs (custom functionality, see class)
+  poly.createPolygon();
+  poly.createBody();
+  
+  updateAndDrawBox2D();
+  // destroy the person's body (important!)
+  poly.destroyBody();
 
   // Run all the particle systems
   for (ParticleSystem system: systems) {
@@ -74,6 +83,11 @@ void draw() {
   image(source.canvas,0,0, width, height);
 }
 
+
+void updateAndDrawBox2D(){
+  // take one step in the box2d physics world
+  box2d.step();
+}
 
 void mousePressed() {
   // Add a new Particle System whenever the mouse is clicked
