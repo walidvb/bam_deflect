@@ -21,10 +21,15 @@ ArrayList<Boundary> boundaries;
 // A list for all particle systems
 ArrayList<ParticleSystem> systems;
 
+VideoSource source;
+
 void setup() {
-  size(400,300);
+  size(400,300, P3D);
   smooth();
 
+  // Init boundaries
+  source = new VideoSource(this);
+  source.setup();
   // Initialize box2d physics and create the world
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
@@ -60,6 +65,8 @@ void draw() {
   for (Boundary wall: boundaries) {
     wall.display();
   }
+  
+  image(source.getImage(),0,0, width, height);
 }
 
 
