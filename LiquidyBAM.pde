@@ -4,24 +4,28 @@
 // Box2DProcessing example
 
 // Box2D particle system example
-
+import java.util.*;
+import processing.opengl.*; // opengl
 import shiffman.box2d.*;
 import org.jbox2d.collision.shapes.*;
 import org.jbox2d.common.*;
 import org.jbox2d.dynamics.*;
-
+import blobDetection.*; // blobs
+import toxi.geom.*; // toxiclibs shapes and vectors
+import toxi.processing.*; // toxiclibs display
 
 
 // A reference to our box2d world
 Box2DProcessing box2d;
+VideoSource source;
+BlobDetection theBlobDetection;
+
 
 // A list we'll use to track fixed objects
 ArrayList<Boundary> boundaries;
 
 // A list for all particle systems
 ArrayList<ParticleSystem> systems;
-
-VideoSource source;
 
 void setup() {
   size(400,300, P3D);
@@ -43,7 +47,6 @@ void setup() {
 
   // Add a bunch of fixed boundaries
   boundaries.add(new Boundary(50,100,300,5,-0.3));
-  boundaries.add(new Boundary(250,175,300,5,0.5));
 
 }
 

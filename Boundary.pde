@@ -15,6 +15,9 @@ class Boundary {
   // But we also have to make a body for box2d to know about it
   Body b;
 
+ Boundary(PGraphics img){
+   
+ }
  Boundary(float x_,float y_, float w_, float h_, float a) {
     x = x_;
     y = y_;

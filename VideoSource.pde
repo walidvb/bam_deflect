@@ -3,9 +3,13 @@ import codeanticode.syphon.*;
 class VideoSource{
   PGraphics canvas;
   SyphonClient client;
+  
+  int width, height;
   PApplet applet;
   VideoSource(PApplet applet){
      this.applet = applet;
+     this.width = applet.width;
+     this.height = applet.height;
   }
   void setup(){
     println("Available Syphon servers:");
