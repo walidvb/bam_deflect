@@ -24,7 +24,7 @@ class PolygonBlob extends Polygon2D {
             EdgeVertex fp = b.getEdgeVertexA((max(0, m-1)));
             float dn = dist(eA.x*source.width, eA.y*source.height, fn.x*source.width, fn.y*source.height);
             float dp = dist(eA.x*source.width, eA.y*source.height, fp.x*source.width, fp.y*source.height);
-            if (dn > 0.8 || dp > 0.8) {
+            if (dn > 15 || dp > 15) {
               if (contour.size() > 0) {
                 contour.add(new PVector(eB.x*source.width, eB.y*source.height));
                 contours.add(contour);
@@ -40,7 +40,7 @@ class PolygonBlob extends Polygon2D {
         
       }
     }
-    println("contours: " + contours.size());
+    // println("contours: " + contours.size());
     while (contours.size() > 0) {
       
       // find next contour
